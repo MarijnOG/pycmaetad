@@ -1,0 +1,19 @@
+name: pycmaetad
+channels:
+  - conda-forge
+  - omnia
+  - defaults
+dependencies:
+  - python>=3.9
+  - openmm-plumed
+  - openmm
+  - plumed
+  - numpy
+  - scipy
+  - matplotlib
+  - pyyaml
+  - joblib
+  - pip
+  - pip:
+    - cma
+    - -e .
