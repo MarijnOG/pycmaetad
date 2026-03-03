@@ -1,0 +1,2002 @@
+REMARK   1 CREATED WITH OPENMM 8.2, 2026-02-25
+MODEL        1
+HETATM    1  P    MB A   1       1.465  16.475  -0.004  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL        2
+HETATM    1  P    MB A   1       1.461  16.519   0.015  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL        3
+HETATM    1  P    MB A   1       1.468  16.536   0.042  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL        4
+HETATM    1  P    MB A   1       1.491  16.545   0.110  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL        5
+HETATM    1  P    MB A   1       1.493  16.570   0.201  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL        6
+HETATM    1  P    MB A   1       1.462  16.607   0.281  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL        7
+HETATM    1  P    MB A   1       1.451  16.632   0.338  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL        8
+HETATM    1  P    MB A   1       1.500  16.642   0.378  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL        9
+HETATM    1  P    MB A   1       1.509  16.626   0.456  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       10
+HETATM    1  P    MB A   1       1.465  16.628   0.545  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       11
+HETATM    1  P    MB A   1       1.425  16.621   0.643  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       12
+HETATM    1  P    MB A   1       1.444  16.589   0.750  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       13
+HETATM    1  P    MB A   1       1.488  16.555   0.848  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       14
+HETATM    1  P    MB A   1       1.504  16.501   0.942  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       15
+HETATM    1  P    MB A   1       1.502  16.422   1.026  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       16
+HETATM    1  P    MB A   1       1.488  16.353   1.099  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       17
+HETATM    1  P    MB A   1       1.462  16.289   1.164  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       18
+HETATM    1  P    MB A   1       1.442  16.228   1.231  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       19
+HETATM    1  P    MB A   1       1.462  16.152   1.291  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       20
+HETATM    1  P    MB A   1       1.500  16.088   1.350  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       21
+HETATM    1  P    MB A   1       1.521  16.068   1.384  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       22
+HETATM    1  P    MB A   1       1.517  16.048   1.380  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       23
+HETATM    1  P    MB A   1       1.503  16.002   1.342  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       24
+HETATM    1  P    MB A   1       1.487  15.910   1.297  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       25
+HETATM    1  P    MB A   1       1.483  15.786   1.265  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       26
+HETATM    1  P    MB A   1       1.497  15.641   1.245  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       27
+HETATM    1  P    MB A   1       1.516  15.461   1.198  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       28
+HETATM    1  P    MB A   1       1.509  15.252   1.142  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       29
+HETATM    1  P    MB A   1       1.478  15.024   1.080  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       30
+HETATM    1  P    MB A   1       1.473  14.757   1.015  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       31
+HETATM    1  P    MB A   1       1.460  14.450   0.941  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       32
+HETATM    1  P    MB A   1       1.427  14.128   0.881  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       33
+HETATM    1  P    MB A   1       1.425  13.784   0.840  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       34
+HETATM    1  P    MB A   1       1.455  13.430   0.803  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       35
+HETATM    1  P    MB A   1       1.447  13.032   0.768  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       36
+HETATM    1  P    MB A   1       1.381  12.585   0.727  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       37
+HETATM    1  P    MB A   1       1.307  12.085   0.704  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       38
+HETATM    1  P    MB A   1       1.231  11.552   0.673  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       39
+HETATM    1  P    MB A   1       1.143  11.002   0.655  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       40
+HETATM    1  P    MB A   1       1.045  10.399   0.639  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       41
+HETATM    1  P    MB A   1       0.913   9.710   0.614  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       42
+HETATM    1  P    MB A   1       0.753   8.895   0.582  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       43
+HETATM    1  P    MB A   1       0.548   7.873   0.556  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       44
+HETATM    1  P    MB A   1       0.326   6.602   0.556  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       45
+HETATM    1  P    MB A   1       0.083   5.089   0.555  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       46
+HETATM    1  P    MB A   1      -0.144   3.525   0.543  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       47
+HETATM    1  P    MB A   1      -0.325   2.061   0.508  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       48
+HETATM    1  P    MB A   1      -0.414   0.688   0.485  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       49
+HETATM    1  P    MB A   1      -0.391  -0.606   0.475  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       50
+HETATM    1  P    MB A   1      -0.301  -1.718   0.490  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       51
+HETATM    1  P    MB A   1      -0.143  -2.581   0.531  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       52
+HETATM    1  P    MB A   1       0.051  -3.186   0.575  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       53
+HETATM    1  P    MB A   1       0.262  -3.545   0.633  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       54
+HETATM    1  P    MB A   1       0.468  -3.655   0.695  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       55
+HETATM    1  P    MB A   1       0.686  -3.549   0.745  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       56
+HETATM    1  P    MB A   1       0.900  -3.215   0.798  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       57
+HETATM    1  P    MB A   1       1.107  -2.617   0.843  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       58
+HETATM    1  P    MB A   1       1.336  -1.731   0.889  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       59
+HETATM    1  P    MB A   1       1.625  -0.579   0.973  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       60
+HETATM    1  P    MB A   1       2.014   0.712   1.055  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       61
+HETATM    1  P    MB A   1       2.493   2.024   1.143  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       62
+HETATM    1  P    MB A   1       2.992   3.250   1.232  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       63
+HETATM    1  P    MB A   1       3.458   4.421   1.317  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       64
+HETATM    1  P    MB A   1       3.802   5.511   1.386  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       65
+HETATM    1  P    MB A   1       4.017   6.439   1.481  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       66
+HETATM    1  P    MB A   1       4.117   7.134   1.559  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       67
+HETATM    1  P    MB A   1       4.075   7.551   1.610  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       68
+HETATM    1  P    MB A   1       3.900   7.697   1.654  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       69
+HETATM    1  P    MB A   1       3.624   7.561   1.675  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       70
+HETATM    1  P    MB A   1       3.232   7.159   1.675  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       71
+HETATM    1  P    MB A   1       2.747   6.509   1.673  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       72
+HETATM    1  P    MB A   1       2.184   5.656   1.681  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       73
+HETATM    1  P    MB A   1       1.532   4.651   1.706  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       74
+HETATM    1  P    MB A   1       0.808   3.643   1.743  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       75
+HETATM    1  P    MB A   1       0.067   2.707   1.766  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       76
+HETATM    1  P    MB A   1      -0.636   1.862   1.817  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       77
+HETATM    1  P    MB A   1      -1.235   1.122   1.836  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       78
+HETATM    1  P    MB A   1      -1.729   0.485   1.850  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       79
+HETATM    1  P    MB A   1      -2.147  -0.037   1.885  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       80
+HETATM    1  P    MB A   1      -2.463  -0.434   1.922  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       81
+HETATM    1  P    MB A   1      -2.686  -0.708   1.961  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       82
+HETATM    1  P    MB A   1      -2.784  -0.839   2.030  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       83
+HETATM    1  P    MB A   1      -2.770  -0.843   2.122  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       84
+HETATM    1  P    MB A   1      -2.652  -0.718   2.228  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       85
+HETATM    1  P    MB A   1      -2.453  -0.428   2.316  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       86
+HETATM    1  P    MB A   1      -2.172   0.001   2.381  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       87
+HETATM    1  P    MB A   1      -1.833   0.502   2.441  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       88
+HETATM    1  P    MB A   1      -1.399   1.086   2.511  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       89
+HETATM    1  P    MB A   1      -0.872   1.756   2.610  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       90
+HETATM    1  P    MB A   1      -0.274   2.490   2.712  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       91
+HETATM    1  P    MB A   1       0.351   3.283   2.790  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       92
+HETATM    1  P    MB A   1       0.975   4.155   2.837  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       93
+HETATM    1  P    MB A   1       1.558   5.074   2.857  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       94
+HETATM    1  P    MB A   1       2.078   5.890   2.850  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       95
+HETATM    1  P    MB A   1       2.490   6.514   2.823  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       96
+HETATM    1  P    MB A   1       2.750   6.883   2.810  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       97
+HETATM    1  P    MB A   1       2.894   6.947   2.804  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       98
+HETATM    1  P    MB A   1       2.930   6.734   2.781  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL       99
+HETATM    1  P    MB A   1       2.853   6.256   2.767  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      100
+HETATM    1  P    MB A   1       2.670   5.530   2.803  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      101
+HETATM    1  P    MB A   1       2.428   4.639   2.863  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      102
+HETATM    1  P    MB A   1       2.130   3.688   2.927  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      103
+HETATM    1  P    MB A   1       1.782   2.733   2.986  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      104
+HETATM    1  P    MB A   1       1.462   1.779   3.022  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      105
+HETATM    1  P    MB A   1       1.206   0.825   3.059  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      106
+HETATM    1  P    MB A   1       1.029  -0.093   3.122  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      107
+HETATM    1  P    MB A   1       0.976  -0.850   3.203  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      108
+HETATM    1  P    MB A   1       1.030  -1.391   3.308  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      109
+HETATM    1  P    MB A   1       1.152  -1.662   3.414  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      110
+HETATM    1  P    MB A   1       1.333  -1.635   3.490  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      111
+HETATM    1  P    MB A   1       1.596  -1.303   3.562  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      112
+HETATM    1  P    MB A   1       1.956  -0.699   3.606  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      113
+HETATM    1  P    MB A   1       2.445   0.105   3.631  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      114
+HETATM    1  P    MB A   1       3.062   1.001   3.674  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      115
+HETATM    1  P    MB A   1       3.770   1.841   3.697  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      116
+HETATM    1  P    MB A   1       4.470   2.543   3.723  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      117
+HETATM    1  P    MB A   1       5.151   3.077   3.723  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      118
+HETATM    1  P    MB A   1       5.740   3.461   3.717  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      119
+HETATM    1  P    MB A   1       6.165   3.666   3.738  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      120
+HETATM    1  P    MB A   1       6.408   3.704   3.785  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      121
+HETATM    1  P    MB A   1       6.466   3.573   3.833  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      122
+HETATM    1  P    MB A   1       6.352   3.232   3.914  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      123
+HETATM    1  P    MB A   1       6.074   2.675   3.985  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      124
+HETATM    1  P    MB A   1       5.707   1.865   4.063  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      125
+HETATM    1  P    MB A   1       5.321   0.829   4.133  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      126
+HETATM    1  P    MB A   1       4.992  -0.301   4.183  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      127
+HETATM    1  P    MB A   1       4.738  -1.240   4.219  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      128
+HETATM    1  P    MB A   1       4.511  -1.786   4.255  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      129
+HETATM    1  P    MB A   1       4.335  -1.874   4.263  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      130
+HETATM    1  P    MB A   1       4.203  -1.532   4.278  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      131
+HETATM    1  P    MB A   1       4.120  -0.777   4.322  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      132
+HETATM    1  P    MB A   1       4.121   0.268   4.364  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      133
+HETATM    1  P    MB A   1       4.207   1.333   4.379  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      134
+HETATM    1  P    MB A   1       4.347   2.245   4.354  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      135
+HETATM    1  P    MB A   1       4.462   2.964   4.328  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      136
+HETATM    1  P    MB A   1       4.483   3.536   4.293  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      137
+HETATM    1  P    MB A   1       4.405   4.008   4.242  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      138
+HETATM    1  P    MB A   1       4.200   4.376   4.171  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      139
+HETATM    1  P    MB A   1       3.880   4.639   4.135  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      140
+HETATM    1  P    MB A   1       3.448   4.788   4.131  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      141
+HETATM    1  P    MB A   1       2.912   4.835   4.136  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      142
+HETATM    1  P    MB A   1       2.272   4.779   4.163  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      143
+HETATM    1  P    MB A   1       1.543   4.667   4.207  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      144
+HETATM    1  P    MB A   1       0.760   4.538   4.256  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      145
+HETATM    1  P    MB A   1      -0.036   4.419   4.334  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      146
+HETATM    1  P    MB A   1      -0.853   4.315   4.403  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      147
+HETATM    1  P    MB A   1      -1.662   4.297   4.438  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      148
+HETATM    1  P    MB A   1      -2.419   4.326   4.471  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      149
+HETATM    1  P    MB A   1      -3.158   4.425   4.525  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      150
+HETATM    1  P    MB A   1      -3.863   4.605   4.581  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      151
+HETATM    1  P    MB A   1      -4.515   4.821   4.650  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      152
+HETATM    1  P    MB A   1      -5.103   5.039   4.715  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      153
+HETATM    1  P    MB A   1      -5.633   5.221   4.794  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      154
+HETATM    1  P    MB A   1      -6.098   5.387   4.908  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      155
+HETATM    1  P    MB A   1      -6.472   5.535   5.018  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      156
+HETATM    1  P    MB A   1      -6.755   5.657   5.090  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      157
+HETATM    1  P    MB A   1      -6.992   5.756   5.142  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      158
+HETATM    1  P    MB A   1      -7.151   5.802   5.187  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      159
+HETATM    1  P    MB A   1      -7.265   5.813   5.209  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      160
+HETATM    1  P    MB A   1      -7.333   5.794   5.257  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      161
+HETATM    1  P    MB A   1      -7.351   5.713   5.337  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      162
+HETATM    1  P    MB A   1      -7.304   5.592   5.425  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      163
+HETATM    1  P    MB A   1      -7.206   5.450   5.494  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      164
+HETATM    1  P    MB A   1      -7.058   5.297   5.552  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      165
+HETATM    1  P    MB A   1      -6.830   5.121   5.649  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      166
+HETATM    1  P    MB A   1      -6.535   4.969   5.749  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      167
+HETATM    1  P    MB A   1      -6.171   4.827   5.835  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      168
+HETATM    1  P    MB A   1      -5.764   4.699   5.889  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      169
+HETATM    1  P    MB A   1      -5.273   4.604   5.924  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      170
+HETATM    1  P    MB A   1      -4.698   4.557   5.958  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      171
+HETATM    1  P    MB A   1      -4.039   4.557   5.959  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      172
+HETATM    1  P    MB A   1      -3.296   4.621   5.940  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      173
+HETATM    1  P    MB A   1      -2.503   4.718   5.937  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      174
+HETATM    1  P    MB A   1      -1.681   4.821   5.955  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      175
+HETATM    1  P    MB A   1      -0.889   4.890   5.974  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      176
+HETATM    1  P    MB A   1      -0.111   4.891   5.985  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      177
+HETATM    1  P    MB A   1       0.663   4.873   5.993  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      178
+HETATM    1  P    MB A   1       1.400   4.822   6.020  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      179
+HETATM    1  P    MB A   1       2.064   4.718   6.070  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      180
+HETATM    1  P    MB A   1       2.613   4.545   6.108  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      181
+HETATM    1  P    MB A   1       3.047   4.325   6.147  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      182
+HETATM    1  P    MB A   1       3.397   4.055   6.216  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      183
+HETATM    1  P    MB A   1       3.679   3.701   6.277  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      184
+HETATM    1  P    MB A   1       3.877   3.254   6.313  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      185
+HETATM    1  P    MB A   1       4.003   2.717   6.377  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      186
+HETATM    1  P    MB A   1       4.112   2.016   6.434  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      187
+HETATM    1  P    MB A   1       4.229   1.168   6.484  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      188
+HETATM    1  P    MB A   1       4.381   0.153   6.547  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      189
+HETATM    1  P    MB A   1       4.608  -0.831   6.601  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      190
+HETATM    1  P    MB A   1       4.916  -1.525   6.656  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      191
+HETATM    1  P    MB A   1       5.226  -1.805   6.691  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      192
+HETATM    1  P    MB A   1       5.552  -1.596   6.714  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      193
+HETATM    1  P    MB A   1       5.875  -0.927   6.706  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      194
+HETATM    1  P    MB A   1       6.200   0.089   6.681  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      195
+HETATM    1  P    MB A   1       6.521   1.153   6.680  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      196
+HETATM    1  P    MB A   1       6.785   2.018   6.658  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      197
+HETATM    1  P    MB A   1       6.950   2.555   6.632  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      198
+HETATM    1  P    MB A   1       6.980   2.761   6.632  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      199
+HETATM    1  P    MB A   1       6.858   2.657   6.627  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      200
+HETATM    1  P    MB A   1       6.608   2.251   6.646  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      201
+HETATM    1  P    MB A   1       6.286   1.510   6.656  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      202
+HETATM    1  P    MB A   1       5.910   0.500   6.660  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      203
+HETATM    1  P    MB A   1       5.567  -0.535   6.669  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      204
+HETATM    1  P    MB A   1       5.271  -1.323   6.705  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      205
+HETATM    1  P    MB A   1       4.996  -1.688   6.754  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      206
+HETATM    1  P    MB A   1       4.757  -1.631   6.778  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      207
+HETATM    1  P    MB A   1       4.559  -1.167   6.820  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      208
+HETATM    1  P    MB A   1       4.390  -0.380   6.857  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      209
+HETATM    1  P    MB A   1       4.300   0.593   6.913  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      210
+HETATM    1  P    MB A   1       4.285   1.559   6.972  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      211
+HETATM    1  P    MB A   1       4.267   2.377   7.015  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      212
+HETATM    1  P    MB A   1       4.251   3.063   7.073  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      213
+HETATM    1  P    MB A   1       4.164   3.647   7.180  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      214
+HETATM    1  P    MB A   1       3.997   4.133   7.301  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      215
+HETATM    1  P    MB A   1       3.749   4.534   7.396  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      216
+HETATM    1  P    MB A   1       3.391   4.859   7.511  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      217
+HETATM    1  P    MB A   1       2.910   5.080   7.645  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      218
+HETATM    1  P    MB A   1       2.356   5.178   7.744  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      219
+HETATM    1  P    MB A   1       1.734   5.180   7.813  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      220
+HETATM    1  P    MB A   1       1.018   5.079   7.875  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      221
+HETATM    1  P    MB A   1       0.253   4.919   7.942  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      222
+HETATM    1  P    MB A   1      -0.554   4.714   7.990  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      223
+HETATM    1  P    MB A   1      -1.350   4.523   8.053  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      224
+HETATM    1  P    MB A   1      -2.144   4.368   8.153  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      225
+HETATM    1  P    MB A   1      -2.899   4.265   8.274  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      226
+HETATM    1  P    MB A   1      -3.608   4.237   8.391  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      227
+HETATM    1  P    MB A   1      -4.264   4.308   8.495  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      228
+HETATM    1  P    MB A   1      -4.862   4.459   8.588  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      229
+HETATM    1  P    MB A   1      -5.370   4.683   8.690  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      230
+HETATM    1  P    MB A   1      -5.783   4.952   8.761  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      231
+HETATM    1  P    MB A   1      -6.107   5.259   8.805  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      232
+HETATM    1  P    MB A   1      -6.332   5.554   8.873  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      233
+HETATM    1  P    MB A   1      -6.481   5.807   8.960  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      234
+HETATM    1  P    MB A   1      -6.553   5.997   9.062  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      235
+HETATM    1  P    MB A   1      -6.612   6.111   9.173  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      236
+HETATM    1  P    MB A   1      -6.649   6.164   9.286  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      237
+HETATM    1  P    MB A   1      -6.668   6.103   9.416  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      238
+HETATM    1  P    MB A   1      -6.650   5.939   9.535  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      239
+HETATM    1  P    MB A   1      -6.609   5.706   9.638  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      240
+HETATM    1  P    MB A   1      -6.523   5.420   9.734  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      241
+HETATM    1  P    MB A   1      -6.406   5.094   9.836  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      242
+HETATM    1  P    MB A   1      -6.233   4.764   9.957  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      243
+HETATM    1  P    MB A   1      -5.968   4.447  10.092  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      244
+HETATM    1  P    MB A   1      -5.654   4.199  10.228  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      245
+HETATM    1  P    MB A   1      -5.278   4.061  10.346  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      246
+HETATM    1  P    MB A   1      -4.822   4.036  10.447  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      247
+HETATM    1  P    MB A   1      -4.290   4.145  10.554  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      248
+HETATM    1  P    MB A   1      -3.659   4.342  10.615  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      249
+HETATM    1  P    MB A   1      -2.955   4.584  10.679  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      250
+HETATM    1  P    MB A   1      -2.204   4.860  10.780  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      251
+HETATM    1  P    MB A   1      -1.419   5.130  10.872  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      252
+HETATM    1  P    MB A   1      -0.641   5.327  10.986  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      253
+HETATM    1  P    MB A   1       0.125   5.421  11.124  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      254
+HETATM    1  P    MB A   1       0.881   5.413  11.238  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      255
+HETATM    1  P    MB A   1       1.604   5.285  11.319  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      256
+HETATM    1  P    MB A   1       2.262   5.023  11.407  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      257
+HETATM    1  P    MB A   1       2.837   4.685  11.485  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      258
+HETATM    1  P    MB A   1       3.300   4.294  11.559  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      259
+HETATM    1  P    MB A   1       3.650   3.829  11.632  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      260
+HETATM    1  P    MB A   1       3.902   3.332  11.707  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      261
+HETATM    1  P    MB A   1       4.113   2.766  11.780  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      262
+HETATM    1  P    MB A   1       4.346   2.054  11.873  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      263
+HETATM    1  P    MB A   1       4.609   1.165  11.969  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      264
+HETATM    1  P    MB A   1       4.926   0.167  12.044  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      265
+HETATM    1  P    MB A   1       5.312  -0.771  12.105  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      266
+HETATM    1  P    MB A   1       5.771  -1.384  12.152  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      267
+HETATM    1  P    MB A   1       6.206  -1.559  12.184  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      268
+HETATM    1  P    MB A   1       6.605  -1.254  12.229  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      269
+HETATM    1  P    MB A   1       6.956  -0.506  12.284  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      270
+HETATM    1  P    MB A   1       7.266   0.493  12.367  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      271
+HETATM    1  P    MB A   1       7.495   1.406  12.454  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      272
+HETATM    1  P    MB A   1       7.612   2.025  12.537  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      273
+HETATM    1  P    MB A   1       7.574   2.287  12.632  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      274
+HETATM    1  P    MB A   1       7.378   2.201  12.733  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      275
+HETATM    1  P    MB A   1       7.059   1.757  12.831  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      276
+HETATM    1  P    MB A   1       6.682   0.982  12.916  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      277
+HETATM    1  P    MB A   1       6.277   0.010  13.035  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      278
+HETATM    1  P    MB A   1       5.877  -0.834  13.148  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      279
+HETATM    1  P    MB A   1       5.483  -1.357  13.238  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      280
+HETATM    1  P    MB A   1       5.085  -1.470  13.359  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      281
+HETATM    1  P    MB A   1       4.750  -1.163  13.495  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      282
+HETATM    1  P    MB A   1       4.493  -0.509  13.599  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      283
+HETATM    1  P    MB A   1       4.307   0.358  13.684  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      284
+HETATM    1  P    MB A   1       4.187   1.240  13.786  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      285
+HETATM    1  P    MB A   1       4.118   1.988  13.914  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      286
+HETATM    1  P    MB A   1       4.064   2.585  14.053  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      287
+HETATM    1  P    MB A   1       3.981   3.048  14.170  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      288
+HETATM    1  P    MB A   1       3.868   3.410  14.269  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      289
+HETATM    1  P    MB A   1       3.691   3.719  14.376  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      290
+HETATM    1  P    MB A   1       3.434   3.955  14.485  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      291
+HETATM    1  P    MB A   1       3.086   4.145  14.592  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      292
+HETATM    1  P    MB A   1       2.664   4.299  14.687  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      293
+HETATM    1  P    MB A   1       2.170   4.407  14.775  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      294
+HETATM    1  P    MB A   1       1.647   4.475  14.869  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      295
+HETATM    1  P    MB A   1       1.078   4.531  14.961  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      296
+HETATM    1  P    MB A   1       0.482   4.592  15.040  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      297
+HETATM    1  P    MB A   1      -0.131   4.649  15.084  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      298
+HETATM    1  P    MB A   1      -0.751   4.665  15.104  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      299
+HETATM    1  P    MB A   1      -1.362   4.684  15.140  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      300
+HETATM    1  P    MB A   1      -1.975   4.725  15.159  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      301
+HETATM    1  P    MB A   1      -2.569   4.771  15.160  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      302
+HETATM    1  P    MB A   1      -3.114   4.820  15.175  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      303
+HETATM    1  P    MB A   1      -3.631   4.884  15.219  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      304
+HETATM    1  P    MB A   1      -4.081   4.962  15.296  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      305
+HETATM    1  P    MB A   1      -4.448   5.051  15.367  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      306
+HETATM    1  P    MB A   1      -4.730   5.143  15.428  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      307
+HETATM    1  P    MB A   1      -4.958   5.214  15.483  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      308
+HETATM    1  P    MB A   1      -5.135   5.248  15.535  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      309
+HETATM    1  P    MB A   1      -5.270   5.225  15.582  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      310
+HETATM    1  P    MB A   1      -5.314   5.166  15.628  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      311
+HETATM    1  P    MB A   1      -5.289   5.083  15.663  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      312
+HETATM    1  P    MB A   1      -5.191   5.013  15.689  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      313
+HETATM    1  P    MB A   1      -5.008   4.951  15.720  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      314
+HETATM    1  P    MB A   1      -4.748   4.895  15.756  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      315
+HETATM    1  P    MB A   1      -4.435   4.827  15.816  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      316
+HETATM    1  P    MB A   1      -4.089   4.780  15.883  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      317
+HETATM    1  P    MB A   1      -3.694   4.748  15.940  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      318
+HETATM    1  P    MB A   1      -3.230   4.737  15.995  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      319
+HETATM    1  P    MB A   1      -2.711   4.709  16.054  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      320
+HETATM    1  P    MB A   1      -2.157   4.709  16.134  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      321
+HETATM    1  P    MB A   1      -1.596   4.728  16.234  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      322
+HETATM    1  P    MB A   1      -1.037   4.781  16.342  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      323
+HETATM    1  P    MB A   1      -0.461   4.829  16.452  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      324
+HETATM    1  P    MB A   1       0.132   4.856  16.539  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      325
+HETATM    1  P    MB A   1       0.723   4.832  16.624  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      326
+HETATM    1  P    MB A   1       1.280   4.777  16.735  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      327
+HETATM    1  P    MB A   1       1.769   4.667  16.869  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      328
+HETATM    1  P    MB A   1       2.173   4.526  17.006  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      329
+HETATM    1  P    MB A   1       2.515   4.344  17.117  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      330
+HETATM    1  P    MB A   1       2.785   4.120  17.237  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      331
+HETATM    1  P    MB A   1       2.995   3.866  17.337  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      332
+HETATM    1  P    MB A   1       3.148   3.590  17.437  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      333
+HETATM    1  P    MB A   1       3.246   3.286  17.571  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      334
+HETATM    1  P    MB A   1       3.262   2.949  17.698  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      335
+HETATM    1  P    MB A   1       3.257   2.574  17.833  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      336
+HETATM    1  P    MB A   1       3.233   2.120  17.949  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      337
+HETATM    1  P    MB A   1       3.210   1.539  18.075  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      338
+HETATM    1  P    MB A   1       3.218   0.868  18.192  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      339
+HETATM    1  P    MB A   1       3.331   0.173  18.293  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      340
+HETATM    1  P    MB A   1       3.555  -0.444  18.409  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      341
+HETATM    1  P    MB A   1       3.853  -0.860  18.559  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      342
+HETATM    1  P    MB A   1       4.206  -0.989  18.712  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      343
+HETATM    1  P    MB A   1       4.622  -0.820  18.852  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      344
+HETATM    1  P    MB A   1       5.096  -0.391  18.977  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      345
+HETATM    1  P    MB A   1       5.624   0.228  19.120  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      346
+HETATM    1  P    MB A   1       6.183   0.869  19.268  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      347
+HETATM    1  P    MB A   1       6.755   1.359  19.382  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      348
+HETATM    1  P    MB A   1       7.247   1.594  19.489  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      349
+HETATM    1  P    MB A   1       7.614   1.523  19.593  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      350
+HETATM    1  P    MB A   1       7.849   1.153  19.685  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      351
+HETATM    1  P    MB A   1       7.975   0.521  19.775  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      352
+HETATM    1  P    MB A   1       7.980  -0.181  19.836  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      353
+HETATM    1  P    MB A   1       7.885  -0.747  19.884  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      354
+HETATM    1  P    MB A   1       7.661  -0.938  19.923  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      355
+HETATM    1  P    MB A   1       7.360  -0.729  19.969  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      356
+HETATM    1  P    MB A   1       6.975  -0.223  20.033  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      357
+HETATM    1  P    MB A   1       6.529   0.443  20.071  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      358
+HETATM    1  P    MB A   1       6.080   1.074  20.075  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      359
+HETATM    1  P    MB A   1       5.606   1.506  20.074  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      360
+HETATM    1  P    MB A   1       5.105   1.680  20.061  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      361
+HETATM    1  P    MB A   1       4.620   1.618  20.037  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      362
+HETATM    1  P    MB A   1       4.175   1.337  20.015  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      363
+HETATM    1  P    MB A   1       3.794   0.907  19.998  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      364
+HETATM    1  P    MB A   1       3.507   0.406  19.951  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      365
+HETATM    1  P    MB A   1       3.332  -0.064  19.880  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      366
+HETATM    1  P    MB A   1       3.279  -0.441  19.814  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      367
+HETATM    1  P    MB A   1       3.325  -0.638  19.774  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      368
+HETATM    1  P    MB A   1       3.462  -0.640  19.763  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      369
+HETATM    1  P    MB A   1       3.711  -0.411  19.735  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      370
+HETATM    1  P    MB A   1       4.071   0.006  19.696  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      371
+HETATM    1  P    MB A   1       4.532   0.509  19.634  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      372
+HETATM    1  P    MB A   1       5.051   0.974  19.567  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      373
+HETATM    1  P    MB A   1       5.573   1.280  19.500  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      374
+HETATM    1  P    MB A   1       6.113   1.357  19.416  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      375
+HETATM    1  P    MB A   1       6.593   1.227  19.303  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      376
+HETATM    1  P    MB A   1       7.005   0.860  19.197  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      377
+HETATM    1  P    MB A   1       7.354   0.330  19.072  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      378
+HETATM    1  P    MB A   1       7.604  -0.229  18.942  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      379
+HETATM    1  P    MB A   1       7.757  -0.662  18.801  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      380
+HETATM    1  P    MB A   1       7.798  -0.796  18.650  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      381
+HETATM    1  P    MB A   1       7.735  -0.627  18.499  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      382
+HETATM    1  P    MB A   1       7.592  -0.164  18.372  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      383
+HETATM    1  P    MB A   1       7.367   0.409  18.253  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      384
+HETATM    1  P    MB A   1       7.055   0.903  18.149  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      385
+HETATM    1  P    MB A   1       6.688   1.202  18.078  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      386
+HETATM    1  P    MB A   1       6.291   1.271  18.005  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      387
+HETATM    1  P    MB A   1       5.863   1.133  17.933  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      388
+HETATM    1  P    MB A   1       5.461   0.805  17.841  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      389
+HETATM    1  P    MB A   1       5.074   0.361  17.746  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      390
+HETATM    1  P    MB A   1       4.724  -0.058  17.644  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      391
+HETATM    1  P    MB A   1       4.435  -0.362  17.519  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      392
+HETATM    1  P    MB A   1       4.216  -0.506  17.408  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      393
+HETATM    1  P    MB A   1       4.074  -0.465  17.304  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      394
+HETATM    1  P    MB A   1       4.009  -0.224  17.196  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      395
+HETATM    1  P    MB A   1       4.037   0.150  17.110  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      396
+HETATM    1  P    MB A   1       4.178   0.575  17.009  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      397
+HETATM    1  P    MB A   1       4.416   0.964  16.930  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      398
+HETATM    1  P    MB A   1       4.707   1.246  16.843  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      399
+HETATM    1  P    MB A   1       5.056   1.360  16.760  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      400
+HETATM    1  P    MB A   1       5.421   1.269  16.656  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      401
+HETATM    1  P    MB A   1       5.797   0.977  16.553  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      402
+HETATM    1  P    MB A   1       6.142   0.549  16.451  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      403
+HETATM    1  P    MB A   1       6.487   0.044  16.354  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      404
+HETATM    1  P    MB A   1       6.803  -0.360  16.274  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      405
+HETATM    1  P    MB A   1       7.085  -0.563  16.179  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      406
+HETATM    1  P    MB A   1       7.326  -0.532  16.095  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      407
+HETATM    1  P    MB A   1       7.514  -0.226  16.013  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      408
+HETATM    1  P    MB A   1       7.673   0.242  15.954  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      409
+HETATM    1  P    MB A   1       7.770   0.701  15.889  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      410
+HETATM    1  P    MB A   1       7.754   0.963  15.798  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      411
+HETATM    1  P    MB A   1       7.641   0.995  15.707  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      412
+HETATM    1  P    MB A   1       7.424   0.812  15.655  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      413
+HETATM    1  P    MB A   1       7.107   0.489  15.591  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      414
+HETATM    1  P    MB A   1       6.733   0.136  15.508  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      415
+HETATM    1  P    MB A   1       6.341  -0.179  15.403  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      416
+HETATM    1  P    MB A   1       5.961  -0.357  15.308  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      417
+HETATM    1  P    MB A   1       5.618  -0.348  15.211  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      418
+HETATM    1  P    MB A   1       5.306  -0.159  15.085  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      419
+HETATM    1  P    MB A   1       5.028   0.151  14.982  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      420
+HETATM    1  P    MB A   1       4.797   0.509  14.899  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      421
+HETATM    1  P    MB A   1       4.607   0.834  14.809  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      422
+HETATM    1  P    MB A   1       4.452   1.078  14.739  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      423
+HETATM    1  P    MB A   1       4.347   1.225  14.706  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      424
+HETATM    1  P    MB A   1       4.289   1.232  14.685  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      425
+HETATM    1  P    MB A   1       4.270   1.100  14.680  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      426
+HETATM    1  P    MB A   1       4.320   0.826  14.694  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      427
+HETATM    1  P    MB A   1       4.436   0.482  14.748  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      428
+HETATM    1  P    MB A   1       4.629   0.116  14.827  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      429
+HETATM    1  P    MB A   1       4.875  -0.149  14.894  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      430
+HETATM    1  P    MB A   1       5.206  -0.279  14.954  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      431
+HETATM    1  P    MB A   1       5.607  -0.223  15.020  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      432
+HETATM    1  P    MB A   1       6.028  -0.014  15.084  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      433
+HETATM    1  P    MB A   1       6.459   0.291  15.123  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      434
+HETATM    1  P    MB A   1       6.868   0.570  15.134  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      435
+HETATM    1  P    MB A   1       7.249   0.740  15.123  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      436
+HETATM    1  P    MB A   1       7.575   0.751  15.107  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      437
+HETATM    1  P    MB A   1       7.812   0.587  15.102  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      438
+HETATM    1  P    MB A   1       7.933   0.326  15.093  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      439
+HETATM    1  P    MB A   1       7.924   0.047  15.090  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      440
+HETATM    1  P    MB A   1       7.785  -0.154  15.073  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      441
+HETATM    1  P    MB A   1       7.548  -0.235  15.025  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      442
+HETATM    1  P    MB A   1       7.240  -0.193  14.940  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      443
+HETATM    1  P    MB A   1       6.849  -0.019  14.871  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      444
+HETATM    1  P    MB A   1       6.410   0.216  14.782  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      445
+HETATM    1  P    MB A   1       5.955   0.471  14.696  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      446
+HETATM    1  P    MB A   1       5.500   0.663  14.620  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      447
+HETATM    1  P    MB A   1       5.078   0.758  14.566  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      448
+HETATM    1  P    MB A   1       4.711   0.771  14.527  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      449
+HETATM    1  P    MB A   1       4.397   0.694  14.487  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      450
+HETATM    1  P    MB A   1       4.134   0.564  14.445  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      451
+HETATM    1  P    MB A   1       3.937   0.419  14.396  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      452
+HETATM    1  P    MB A   1       3.809   0.284  14.370  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      453
+HETATM    1  P    MB A   1       3.768   0.189  14.352  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      454
+HETATM    1  P    MB A   1       3.817   0.195  14.312  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      455
+HETATM    1  P    MB A   1       3.953   0.281  14.269  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      456
+HETATM    1  P    MB A   1       4.178   0.384  14.227  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      457
+HETATM    1  P    MB A   1       4.490   0.504  14.187  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      458
+HETATM    1  P    MB A   1       4.856   0.593  14.162  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      459
+HETATM    1  P    MB A   1       5.303   0.637  14.138  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      460
+HETATM    1  P    MB A   1       5.817   0.620  14.119  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      461
+HETATM    1  P    MB A   1       6.343   0.510  14.109  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      462
+HETATM    1  P    MB A   1       6.867   0.343  14.105  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      463
+HETATM    1  P    MB A   1       7.334   0.188  14.106  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      464
+HETATM    1  P    MB A   1       7.690   0.032  14.117  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      465
+HETATM    1  P    MB A   1       7.950  -0.048  14.097  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      466
+HETATM    1  P    MB A   1       8.096  -0.025  14.078  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      467
+HETATM    1  P    MB A   1       8.140   0.058  14.073  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      468
+HETATM    1  P    MB A   1       8.060   0.177  14.070  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      469
+HETATM    1  P    MB A   1       7.867   0.313  14.112  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      470
+HETATM    1  P    MB A   1       7.560   0.404  14.166  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      471
+HETATM    1  P    MB A   1       7.122   0.404  14.207  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      472
+HETATM    1  P    MB A   1       6.612   0.382  14.265  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      473
+HETATM    1  P    MB A   1       6.087   0.342  14.344  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      474
+HETATM    1  P    MB A   1       5.573   0.303  14.421  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      475
+HETATM    1  P    MB A   1       5.105   0.266  14.478  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      476
+HETATM    1  P    MB A   1       4.678   0.229  14.508  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      477
+HETATM    1  P    MB A   1       4.294   0.249  14.538  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      478
+HETATM    1  P    MB A   1       3.986   0.313  14.558  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      479
+HETATM    1  P    MB A   1       3.745   0.423  14.598  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      480
+HETATM    1  P    MB A   1       3.598   0.542  14.628  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      481
+HETATM    1  P    MB A   1       3.566   0.673  14.675  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      482
+HETATM    1  P    MB A   1       3.634   0.774  14.715  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      483
+HETATM    1  P    MB A   1       3.792   0.842  14.766  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      484
+HETATM    1  P    MB A   1       4.049   0.864  14.819  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      485
+HETATM    1  P    MB A   1       4.382   0.816  14.891  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      486
+HETATM    1  P    MB A   1       4.771   0.692  14.992  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      487
+HETATM    1  P    MB A   1       5.186   0.489  15.104  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      488
+HETATM    1  P    MB A   1       5.669   0.280  15.210  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      489
+HETATM    1  P    MB A   1       6.194   0.078  15.318  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      490
+HETATM    1  P    MB A   1       6.709  -0.058  15.404  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      491
+HETATM    1  P    MB A   1       7.226  -0.111  15.492  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      492
+HETATM    1  P    MB A   1       7.704  -0.067  15.568  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      493
+HETATM    1  P    MB A   1       8.081   0.064  15.639  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      494
+HETATM    1  P    MB A   1       8.312   0.249  15.690  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      495
+HETATM    1  P    MB A   1       8.411   0.399  15.728  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      496
+HETATM    1  P    MB A   1       8.345   0.465  15.791  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      497
+HETATM    1  P    MB A   1       8.101   0.461  15.841  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      498
+HETATM    1  P    MB A   1       7.759   0.381  15.869  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      499
+HETATM    1  P    MB A   1       7.304   0.261  15.890  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+MODEL      500
+HETATM    1  P    MB A   1       6.786   0.158  15.910  1.00  0.00           C  
+TER       2       MB A   1
+ENDMDL
+END

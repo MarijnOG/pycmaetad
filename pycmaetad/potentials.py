@@ -64,7 +64,9 @@ class GaussianPotential(AnalyticalPotential):
     def name(self) -> str:
         return f"Gaussian(h={self.height}, c={self.center}, σ={self.sigma})"
 
-
+# In the current version, this potential is defined several times in the codebase.
+# It should be refactored to a single definition in this file, and all other instances 
+# should import it from here.
 class MullerBrownPotential(AnalyticalPotential):
     """Muller-Brown potential energy surface.
     

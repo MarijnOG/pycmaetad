@@ -248,6 +248,42 @@ class MultiGaussian2DForceBias(CustomForceBias):
         """
         bounds = self.get_parameter_bounds()
         return bounds[:, 0] + normalized_params * (bounds[:, 1] - bounds[:, 0])
+    
+    def sum_hills(self, cv_ranges, n_points=100, periodic=False, mintozero=False):
+        """Compute the bias landscape over a 2D grid.
+        
+        This method computes the sum of all Gaussian hills over a regular grid,
+        which represents the bias potential landscape.
+        
+        Args:
+            cv_ranges: List of tuples [(x_min, x_max), (y_min, y_max)] for CV ranges
+            n_points: Number of grid points per dimension (default: 100)
+            periodic: If True, use periodic boundaries (not used for Muller-Brown)
+            mintozero: If True, shift minimum to zero
+            
+        Returns:
+            Tuple of (cv_values, bias_values):
+                - cv_values: List [x_grid, y_grid] of 1D coordinate arrays
+                - bias_values: 2D array of bias values on the grid
+        """
+        if self._parameters is None:
+            raise RuntimeError("Must set parameters first")
+        
+        # Create grid
+        x_range, y_range = cv_ranges
+        x_grid = np.linspace(x_range[0], x_range[1], n_points)
+        y_grid = np.linspace(y_range[0], y_range[1], n_points)
+        
+        X, Y = np.meshgrid(x_grid, y_grid)
+        
+        # Evaluate bias on grid
+        bias_values = self.evaluate_numpy(X, Y)
+        
+        # Optionally shift minimum to zero
+        if mintozero:
+            bias_values = bias_values - np.min(bias_values)
+        
+        return [x_grid, y_grid], bias_values
 
 
 class GaussianInfo:

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 
-def plot_convergence(result, output_path=None, show=False):
+def plot_convergence(result, output_path=None, show=False, marked_generations=[]):
     """Plot CMA-ES optimization convergence.
     
     Args:
@@ -43,6 +43,12 @@ def plot_convergence(result, output_path=None, show=False):
     ax.plot(gens, mean_capped, 'r--s', label='Mean', linewidth=2, markersize=5)
     ax.fill_between(gens, lower_bound, upper_bound,
                      alpha=0.2, color='red', label='±1 std')
+
+    # Mark specific generations (e.g. to point to from text)
+    for gen in marked_generations:
+        if gen in gens:
+            idx = gens.index(gen)
+            ax.plot(gens[idx], best_capped[idx], 'kx', markersize=10, label=f'Gen {gen}')
     
     # Mark capped values
     n_capped = np.sum((best > cap_value) | (mean > cap_value))
@@ -52,10 +58,10 @@ def plot_convergence(result, output_path=None, show=False):
                 transform=ax.transAxes, verticalalignment='top',
                 fontsize=9, bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.5))
     
-    ax.set_xlabel('Generation', fontsize=12)
-    ax.set_ylabel('Score (lower = better)', fontsize=12)
-    ax.set_title('CMA-ES Optimization Convergence', fontsize=14, fontweight='bold')
-    ax.legend(fontsize=10)
+    ax.set_xlabel('Generation', fontsize=16)
+    ax.set_ylabel('KLD', fontsize=16)
+    ax.set_title('CMA-ES Optimization Convergence', fontsize=20, fontweight='bold')
+    ax.legend(fontsize=14)
     ax.grid(True, alpha=0.3)
     
     # Use log scale if scores vary by orders of magnitude
@@ -115,10 +121,10 @@ def plot_sigma_evolution(result, output_path=None, show=False):
         ax.axhline(sigmas[0], color='gray', linestyle=':', linewidth=1.5, alpha=0.5,
                    label=f'Initial σ = {sigmas[0]:.4f}')
     
-    ax.set_xlabel('Generation', fontsize=12)
-    ax.set_ylabel('Sigma (σ)', fontsize=12)
-    ax.set_title('CMA-ES Step Size Evolution', fontsize=14, fontweight='bold')
-    ax.legend(fontsize=10)
+    ax.set_xlabel('Generation', fontsize=16)
+    ax.set_ylabel('Sigma (σ)', fontsize=16)
+    ax.set_title('CMA-ES Step Size Evolution', fontsize=20, fontweight='bold')
+    ax.legend(fontsize=14)
     ax.grid(True, alpha=0.3)
     
     # Use log scale if sigma changes significantly
@@ -153,12 +159,15 @@ def plot_sigma_evolution(result, output_path=None, show=False):
     
     return fig
 
-def plot_parameter_evolution(result, bias, output_path=None, show=False):
+def plot_parameter_evolution(result, bias, param_names=None, output_path=None, show=False):
     """Plot evolution of bias parameters over generations.
     
     Args:
         result: Optimizer result dictionary
         bias: Bias object (for parameter names/bounds)
+        param_names: Optional list of parameter names for plot labels.
+                    If None, will use generic names 'param_0', 'param_1', etc.
+                    Example: ['height', 'cx', 'cy', 'width_x', 'width_y', 'rho']
         output_path: Path to save plot
         show: Whether to display plot
         
@@ -168,9 +177,13 @@ def plot_parameter_evolution(result, bias, output_path=None, show=False):
     history = result['history']
     n_params = bias.get_parameter_space_size()
     
-    # Extract parameter evolution
+    # Extract parameter evolution (normalized in history)
     gens = [h['generation'] for h in history]
-    best_params = np.array([h['best_solution'] for h in history])
+    best_params_normalized = np.array([h['best_solution'] for h in history])
+    
+    # Denormalize parameters for plotting
+    bounds = bias.get_parameter_bounds()
+    best_params = bounds[:, 0] + best_params_normalized * (bounds[:, 1] - bounds[:, 0])
     
     # Create subplots
     n_cols = min(3, n_params)
@@ -182,17 +195,21 @@ def plot_parameter_evolution(result, bias, output_path=None, show=False):
     else:
         axes = axes.flatten()
     
-    bounds = bias.get_parameter_bounds()
-    param_names = [f'param_{i}' for i in range(n_params)]
+    # Use provided names or generate generic ones
+    if param_names is None:
+        param_names = [f'param_{i}' for i in range(n_params)]
+    elif len(param_names) != n_params:
+        print(f"Warning: {len(param_names)} names provided but {n_params} parameters exist. Using generic names.")
+        param_names = [f'param_{i}' for i in range(n_params)]
     
     for i in range(n_params):
         ax = axes[i]
         ax.plot(gens, best_params[:, i], 'b-o', linewidth=2, markersize=5)
         ax.axhline(bounds[i, 0], color='red', linestyle='--', alpha=0.5, label='Bounds')
         ax.axhline(bounds[i, 1], color='red', linestyle='--', alpha=0.5)
-        ax.set_xlabel('Generation')
-        ax.set_ylabel('Value')
-        ax.set_title(param_names[i])
+        ax.set_xlabel('Generation', fontsize=16)
+        ax.set_ylabel('Value', fontsize=16)
+        ax.set_title(param_names[i], fontsize=20)
         ax.grid(True, alpha=0.3)
         if i == 0:
             ax.legend()
@@ -201,7 +218,7 @@ def plot_parameter_evolution(result, bias, output_path=None, show=False):
     for i in range(n_params, len(axes)):
         axes[i].set_visible(False)
     
-    fig.suptitle('Parameter Evolution', fontsize=14, fontweight='bold')
+    fig.suptitle('Parameter Evolution', fontsize=20, fontweight='bold')
     plt.tight_layout()
     
     if output_path:
@@ -251,16 +268,16 @@ def plot_convergence_diagnostics(result, output_path=None, show=False):
     # Plot 1: Score evolution
     ax1.plot(gens, best, 'b-o', label='Best', linewidth=2, markersize=5)
     ax1.plot(gens, mean, 'r--s', label='Mean', linewidth=2, markersize=4)
-    ax1.set_ylabel('Score', fontsize=11)
-    ax1.set_title('Convergence Diagnostics', fontsize=14, fontweight='bold')
-    ax1.legend(loc='upper right')
+    ax1.set_ylabel('Score', fontsize=16)
+    ax1.set_title('Convergence Diagnostics', fontsize=20, fontweight='bold')
+    ax1.legend(loc='upper right', fontsize=14)
     ax1.grid(True, alpha=0.3)
     
     # Plot 2: Sigma evolution
     if sigma_vals:
         ax2.plot(sigma_gens, sigma_vals, 'g-o', linewidth=2, markersize=5)
         ax2.axhline(sigma_vals[0], color='gray', linestyle=':', alpha=0.5)
-        ax2.set_ylabel('Sigma (step size)', fontsize=11, color='g')
+        ax2.set_ylabel('Sigma (step size)', fontsize=16, color='g')
         ax2.tick_params(axis='y', labelcolor='g')
         ax2.set_yscale('log')
         ax2.grid(True, alpha=0.3)
@@ -274,8 +291,8 @@ def plot_convergence_diagnostics(result, output_path=None, show=False):
     
     # Plot 3: Score variance (noise indicator)
     ax3.plot(gens, std, 'purple', linewidth=2, marker='s', markersize=4)
-    ax3.set_xlabel('Generation', fontsize=11)
-    ax3.set_ylabel('Score Std Dev\n(noise level)', fontsize=11, color='purple')
+    ax3.set_xlabel('Generation', fontsize=16)
+    ax3.set_ylabel('Score Std Dev\n(noise level)', fontsize=16, color='purple')
     ax3.tick_params(axis='y', labelcolor='purple')
     ax3.grid(True, alpha=0.3)
     

@@ -110,9 +110,101 @@ def plot_bias_landscape_1d(bias, all_params, cv_range, generation=None,
     
     return fig
 
+def plot_bias_landscape_2d(bias, all_params, cv_ranges, generation=None, 
+                           output_path=None, show=False, n_points=100,
+                           save_data=True, periodic=True, mintozero=False):
+    """Plot 2D free energy surface for individuals in a generation.
+
+    Uses the bias.sum_hills() method to compute the FES (inverted bias).
+    If multiple individuals, plot only the first one to avoid illegible overlays.
+    
+    Args:
+        bias: Bias object with sum_hills() method
+        all_params: List of parameter arrays for each individual in the generation
+        cv_ranges: List of tuples [(min1, max1), (min2, max2)] for CV values
+        generation: Generation number (optional, for title)
+        output_path: Path to save plot (PNG)
+        show: Whether to display plot
+        n_points: Number of points to evaluate per dimension
+        save_data: If True, also save raw data as .npz file
+        periodic: If True, use periodic boundaries (for dihedral angles)
+        mintozero: If True, shift FES minimum to zero
+    Returns:
+        matplotlib Figure object
+    """
+    # Ensure all_params is a list
+    if not isinstance(all_params, list):
+        all_params = [all_params]
+    
+    # Check if bias supports sum_hills
+    if not hasattr(bias, 'sum_hills'):
+        print("Warning: Bias type doesn't support sum_hills() method")
+        return None
+    
+    fig, ax = plt.subplots(figsize=(10, 8))
+    
+    # For 2D, only plot the first individual (typically the best) to avoid illegible overlays
+    # If you need to see all individuals, use separate plots
+    params = all_params[0]
+    
+    bias.set_parameters(params)
+    # Compute FES using sum_hills with periodic boundaries
+    cv_values, fes_values = bias.sum_hills(cv_ranges, n_points, periodic=periodic, mintozero=mintozero)
+    
+    # Plot contour map
+    # Note: fes_values is already in correct shape (n_y, n_x) from sum_hills - no transpose needed
+    cs = ax.contourf(cv_values[0], cv_values[1], fes_values, levels=20, cmap='viridis', alpha=0.9)
+    ax.contour(cv_values[0], cv_values[1], fes_values, levels=10, colors='k', linewidths=0.5, alpha=0.4)
+    
+    # Mark hill centers
+    if hasattr(bias, '_centers_x') and hasattr(bias, '_centers_y'):
+        ax.scatter(bias._centers_x, bias._centers_y, c='red', s=100, marker='x', 
+                  linewidths=2, label='Hill centers', zorder=5)
+    
+    ax.set_xlabel('φ (rad)', fontsize=12)
+    ax.set_ylabel('ψ (rad)', fontsize=12)
+    
+    # Create title with generation number
+    if generation is not None:
+        title = f'Free Energy Surface - Generation {generation}'
+    else:
+        title = 'Free Energy Surface'
+    ax.set_title(title, fontsize=14, fontweight='bold')
+    
+    plt.colorbar(cs, ax=ax, label='Free Energy (kJ/mol)')
+    ax.legend(loc='upper right')
+    ax.grid(True, alpha=0.3, linestyle=':')
+    ax.set_aspect('equal')
+    
+    plt.tight_layout()
+    
+    if output_path:
+        output_path = Path(output_path)
+        plt.savefig(output_path, dpi=150, bbox_inches='tight')
+        print(f"  ✓ Saved plot: {output_path.name}")
+        
+        # Save raw data if requested
+        if save_data:
+            data_path = output_path.with_suffix('.npz')
+            np.savez(
+                data_path,
+                cv_x=cv_values[0],
+                cv_y=cv_values[1],
+                fes=fes_values,
+                generation=generation if generation is not None else -1
+            )
+            print(f"  ✓ Saved data: {data_path.name}")
+    
+    if show:
+        plt.show()
+    else:
+        plt.close()
+    
+    return fig
+
 
 def plot_bias_evolution(bias, result, cv_range, output_dir, n_points=500, 
-                        generations='all', show_best_only=False, mintozero=False):
+                        generations='all', show_best_only=False, mintozero=False, periodic=True):
     """Plot free energy surface evolution across generations.
     
     Creates individual plots for each generation and saves raw data.
@@ -120,12 +212,13 @@ def plot_bias_evolution(bias, result, cv_range, output_dir, n_points=500,
     Args:
         bias: Bias object with sum_hills() method
         result: Optimization result dictionary with 'history'
-        cv_range: Tuple of (min, max) for CV values
+        cv_range: Tuple of (min, max) for 1D, or tuple of tuples for 2D CV ranges
         output_dir: Directory to save plots and data
         n_points: Number of points to evaluate per landscape
         generations: 'all' or list of generation indices to plot
         show_best_only: If True, only plot best individual per generation
         mintozero: If True, shift FES minimum to zero
+        periodic: If True, use periodic boundaries (for dihedral angles)
         
     Returns:
         List of figure objects
@@ -144,8 +237,13 @@ def plot_bias_evolution(bias, result, cv_range, output_dir, n_points=500,
     
     figures = []
     
+    # Auto-detect dimensionality from cv_range
+    # 1D: cv_range is (min, max) tuple
+    # 2D: cv_range is [(min1, max1), (min2, max2)] list
+    is_2d = isinstance(cv_range, (list, tuple)) and len(cv_range) == 2 and isinstance(cv_range[0], (list, tuple))
+    
     print("\n" + "="*60)
-    print("GENERATING BIAS LANDSCAPE EVOLUTION")
+    print(f"GENERATING {'2D' if is_2d else '1D'} BIAS LANDSCAPE EVOLUTION")
     print("="*60)
     
     for gen_idx in gen_indices:
@@ -184,16 +282,31 @@ def plot_bias_evolution(bias, result, cv_range, output_dir, n_points=500,
         suffix = "_best" if show_best_only else "_all"
         plot_path = output_dir / f"bias_landscape_gen{gen_num:03d}{suffix}.png"
         
-        fig = plot_bias_landscape_1d(
-            bias=bias,
-            all_params=all_params,
-            cv_range=cv_range,
-            generation=gen_num,
-            output_path=plot_path,
-            n_points=n_points,
-            save_data=True,
-            mintozero=mintozero
-        )
+        # Call appropriate plotting function based on dimensionality
+        if is_2d:
+            fig = plot_bias_landscape_2d(
+                bias=bias,
+                all_params=all_params,
+                cv_ranges=cv_range,
+                generation=gen_num,
+                output_path=plot_path,
+                n_points=n_points,
+                save_data=True,
+                periodic=periodic,
+                mintozero=mintozero
+            )
+        else:
+            fig = plot_bias_landscape_1d(
+                bias=bias,
+                all_params=all_params,
+                cv_range=cv_range,
+                generation=gen_num,
+                output_path=plot_path,
+                n_points=n_points,
+                save_data=True,
+                periodic=periodic,
+                mintozero=mintozero
+            )
         
         figures.append(fig)
     

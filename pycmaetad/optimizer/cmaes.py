@@ -40,10 +40,79 @@ def _evaluate_analytical_worker(args):
         return (ind, normalized_params, 1e6, time.time() - start_time)
 
 
+def _evaluate_replica_worker(args):
+    """Worker function for evaluating a single replica.
+    
+    Args:
+        args: Tuple of (bias_class, bias_kwargs, sampler_class, sampler_kwargs,
+                       evaluator_class, evaluator_kwargs, params, gen, ind, 
+                       output_base, replica_id)
+    
+    Returns:
+        (ind, replica_id, score, time_elapsed)
+    """
+    (bias_class, bias_kwargs,
+     sampler_class, sampler_kwargs,
+     evaluator_class, evaluator_kwargs,
+     params, gen, ind, output_base, replica_id) = args
+    
+    start_time = time.time()
+    
+    try:
+        # Reconstruct objects in worker process
+        bias = bias_class(**bias_kwargs)
+        evaluator = evaluator_class(**evaluator_kwargs)
+        sampler = sampler_class(**sampler_kwargs)
+        
+        # Set parameters
+        bias.set_parameters(params)
+        
+        # Create output directory
+        output_dir = Path(output_base) / f"gen{gen:03d}" / f"ind{ind:03d}"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Create replica subdirectory
+        replica_dir = output_dir / f"replica_{replica_id}"
+        replica_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Use a hash of (gen, ind, replica) for reproducible but randomized PDB selection
+        # This ensures different evaluations explore different starting structures
+        # while maintaining reproducibility for the same (gen, ind, replica)
+        import hashlib
+        seed_str = f"{gen}_{ind}_{replica_id}"
+        pdb_seed = int(hashlib.md5(seed_str.encode()).hexdigest()[:8], 16)
+        
+        # Run simulation with reproducible random seed
+        sampler.run(str(replica_dir), bias=bias, seed=pdb_seed)
+        
+        # Find trajectory file
+        trajectory_file = replica_dir / "COLVAR"
+        if not trajectory_file.exists():
+            trajectory_file = replica_dir / "output.pdb"
+        
+        if not trajectory_file.exists():
+            raise FileNotFoundError(f"No trajectory found in {replica_dir}")
+        
+        # Evaluate this replica
+        score = evaluator.evaluate_from_file(str(trajectory_file))
+        
+        elapsed = time.time() - start_time
+        print(f"  [{gen:03d}.{ind:03d}.r{replica_id}] Score: {score:.4f} ({elapsed:.1f}s)")
+        
+        return (ind, replica_id, score, elapsed)
+        
+    except Exception as e:
+        print(f"  [{gen:03d}.{ind:03d}.r{replica_id}] ERROR: {e}")
+        import traceback
+        traceback.print_exc()
+        return (ind, replica_id, 1e6, time.time() - start_time)
+
+
 def _evaluate_worker(args):
-    """Worker function for multiprocessing.
+    """Worker function for multiprocessing (backwards compatibility).
     
     Reconstructs bias/sampler/evaluator from class + kwargs.
+    Runs replicas sequentially if n_replicas > 1.
     
     Args:
         args: Tuple of (bias_class, bias_kwargs, sampler_class, sampler_kwargs,
@@ -149,7 +218,8 @@ class CMAESWorkflow:
         max_generations=20,
         n_workers=1,  # Number of parallel workers
         n_replicas=1,  # Number of replicas per evaluation
-        early_stop_patience=50,  # Early stopping patience
+        parallelize_replicas=True,  # Whether to parallelize replicas across workers
+        early_stop_patience=0,  # Early stopping patience, disabled by default
         early_stop_threshold=0.01  # Early stopping threshold
     ):
         """
@@ -164,6 +234,9 @@ class CMAESWorkflow:
             max_generations: Maximum iterations
             n_workers: Number of parallel workers (1 = serial)
             n_replicas: Number of replicas per evaluation to average (default 1)
+            parallelize_replicas: If True, replicas are distributed as independent tasks
+                                  across workers (more efficient). If False, each worker
+                                  runs all replicas for an individual sequentially.
             early_stop_patience: Stop if no improvement for N generations (0 = disabled)
             early_stop_threshold: Relative improvement threshold for early stopping
         """
@@ -173,6 +246,7 @@ class CMAESWorkflow:
         self.max_generations = max_generations
         self.n_workers = n_workers
         self.n_replicas = n_replicas
+        self.parallelize_replicas = parallelize_replicas
         self.early_stop_patience = early_stop_patience
         self.early_stop_threshold = early_stop_threshold
         
@@ -180,6 +254,11 @@ class CMAESWorkflow:
         self._bias_info = self._get_construction_info(bias) if bias is not None else None
         self._sampler_info = self._get_construction_info(sampler) if sampler is not None else None
         self._evaluator_info = self._get_construction_info(evaluator)
+        
+        # Debug: Print sampler info
+        if self._sampler_info is not None:
+            sampler_class, sampler_kwargs = self._sampler_info
+            print(f"🔍 DEBUG: Workflow stored sampler_info - simulation_steps={sampler_kwargs.get('simulation_steps', 'NOT FOUND')}")
         
         # Get parameter space from bias
         n_params = bias.get_parameter_space_size()
@@ -218,7 +297,10 @@ class CMAESWorkflow:
         print(f"  Sigma: {sigma}")
         print(f"  Workers: {self.n_workers}")
         if self.n_replicas > 1:
-            print(f"  Replicas/eval: {self.n_replicas} (reduces stochastic noise)")
+            if self.parallelize_replicas:
+                print(f"  Replicas/eval: {self.n_replicas} (parallelized across workers)")
+            else:
+                print(f"  Replicas/eval: {self.n_replicas} (sequential per worker)")
             total_sims = max_generations * population_size * self.n_replicas
             print(f"  Total simulations: ~{total_sims}")
         
@@ -305,8 +387,13 @@ class CMAESWorkflow:
             'population_size': self.cma.population_size,
             'n_workers': self.n_workers,
             'n_replicas': self.n_replicas,
+            'parallelize_replicas': self.parallelize_replicas,
             'sigma': self.cma._sigma,
-            'max_generations': self.max_generations
+            'max_generations': self.max_generations,
+            'early_stop_patience': self.early_stop_patience,
+            'early_stop_threshold': self.early_stop_threshold,
+            # Save sampler settings
+            'simulation_steps': getattr(self.sampler, 'simulation_steps', None)
         }
         
         checkpoint_file = Path(output_dir) / "optimization_checkpoint.pkl"
@@ -453,45 +540,97 @@ class CMAESWorkflow:
                     solutions.append(x)
                 
                 # Prepare arguments for workers
-                worker_args = []
-                for i, x in enumerate(solutions):
-                    params = self._denormalize(x)
+                # If parallelize_replicas=True and n_replicas>1, create tasks for each replica
+                if not analytical_mode and self.parallelize_replicas and self.n_replicas > 1:
+                    # Parallel replica mode: each replica is an independent task
+                    replica_args = []
+                    for i, x in enumerate(solutions):
+                        params = self._denormalize(x)
+                        for replica_id in range(self.n_replicas):
+                            args = (
+                                self._bias_info[0], self._bias_info[1],
+                                self._sampler_info[0], self._sampler_info[1],
+                                self._evaluator_info[0], self._evaluator_info[1],
+                                params,
+                                generation,
+                                i,
+                                output_dir,
+                                replica_id
+                            )
+                            replica_args.append(args)
                     
-                    if analytical_mode:
-                        # Analytical evaluation - pass evaluator directly (can't pickle functions)
-                        args = (
-                            self.evaluator,  # Pass object directly
-                            params,
-                            x,
-                            generation,
-                            i
-                        )
+                    # Evaluate all replicas in parallel
+                    worker_func = _evaluate_replica_worker
+                    
+                    if self.n_workers == 1:
+                        # Serial execution
+                        replica_results = [worker_func(args) for args in replica_args]
                     else:
-                        # MD simulation evaluation - pack all construction info
-                        args = (
-                            self._bias_info[0], self._bias_info[1],
-                            self._sampler_info[0], self._sampler_info[1],
-                            self._evaluator_info[0], self._evaluator_info[1],
-                            params,
-                            x,
-                            generation,
-                            i,
-                            output_dir,
-                            self.n_replicas
-                        )
-                    worker_args.append(args)
+                        # Parallel execution
+                        print(f"  Submitting {len(replica_args)} replica tasks to {self.n_workers} workers...")
+                        futures = [executor.submit(worker_func, args) for args in replica_args]
+                        replica_results = [future.result() for future in futures]
+                    
+                    # Group replica results by individual and compute averages
+                    from collections import defaultdict
+                    individual_scores = defaultdict(list)
+                    individual_times = defaultdict(list)
+                    
+                    for ind, replica_id, score, elapsed in replica_results:
+                        individual_scores[ind].append(score)
+                        individual_times[ind].append(elapsed)
+                    
+                    # Build results in correct format (ind, normalized_params, avg_score, max_time)
+                    results = []
+                    for i, x in enumerate(solutions):
+                        avg_score = np.mean(individual_scores[i])
+                        max_time = max(individual_times[i]) if self.n_workers == 1 else sum(individual_times[i])
+                        results.append((i, x, avg_score, max_time))
+                        
+                        score_std = np.std(individual_scores[i])
+                        print(f"  [{generation:03d}.{i:03d}] Score: {avg_score:.4f} ± {score_std:.4f} (n={self.n_replicas})")
                 
-                # Evaluate population - use appropriate worker function
-                worker_func = _evaluate_analytical_worker if analytical_mode else _evaluate_worker
-                
-                if self.n_workers == 1:
-                    # Serial execution
-                    results = [worker_func(args) for args in worker_args]
                 else:
-                    # Parallel execution
-                    print(f"  Submitting {len(worker_args)} jobs to {self.n_workers} workers...")
-                    futures = [executor.submit(worker_func, args) for args in worker_args]
-                    results = [future.result() for future in futures]
+                    # Standard mode: each individual runs all replicas sequentially
+                    worker_args = []
+                    for i, x in enumerate(solutions):
+                        params = self._denormalize(x)
+                        
+                        if analytical_mode:
+                            # Analytical evaluation - pass evaluator directly (can't pickle functions)
+                            args = (
+                                self.evaluator,  # Pass object directly
+                                params,
+                                x,
+                                generation,
+                                i
+                            )
+                        else:
+                            # MD simulation evaluation - pack all construction info
+                            args = (
+                                self._bias_info[0], self._bias_info[1],
+                                self._sampler_info[0], self._sampler_info[1],
+                                self._evaluator_info[0], self._evaluator_info[1],
+                                params,
+                                x,
+                                generation,
+                                i,
+                                output_dir,
+                                self.n_replicas
+                            )
+                        worker_args.append(args)
+                    
+                    # Evaluate population - use appropriate worker function
+                    worker_func = _evaluate_analytical_worker if analytical_mode else _evaluate_worker
+                    
+                    if self.n_workers == 1:
+                        # Serial execution
+                        results = [worker_func(args) for args in worker_args]
+                    else:
+                        # Parallel execution
+                        print(f"  Submitting {len(worker_args)} jobs to {self.n_workers} workers...")
+                        futures = [executor.submit(worker_func, args) for args in worker_args]
+                        results = [future.result() for future in futures]
                 
                 # Sort results by individual index to maintain order
                 results = sorted(results, key=lambda r: r[0])

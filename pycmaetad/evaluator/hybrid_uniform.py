@@ -55,14 +55,19 @@ class HybridUniformEvaluator(ColvarEvaluator):
                 raise ValueError("For 2D, bin_edges must be tuple of (x_edges, y_edges)")
             self.num_bins = (len(bin_edges[0]) - 1) * (len(bin_edges[1]) - 1)
             self.bin_edges = bin_edges
+            # For 2D with density=True, uniform density is 1/area
+            x_width = bin_edges[0][-1] - bin_edges[0][0]
+            y_width = bin_edges[1][-1] - bin_edges[1][0]
+            area = x_width * y_width
+            self.uniform_density = 1.0 / area
         else:
             if isinstance(bin_edges, tuple):
                 raise ValueError("For 1D, bin_edges must be array, not tuple")
             self.num_bins = len(bin_edges) - 1
             self.bin_edges = bin_edges
-        
-        # Uniform density (matches Alberto's 1/n_bins)
-        self.uniform_density = 1.0 / self.num_bins
+            # For 1D with density=True, uniform density is 1/width
+            domain_width = bin_edges[-1] - bin_edges[0]
+            self.uniform_density = 1.0 / domain_width
     
     def evaluate(self, colvar_values: np.ndarray) -> float:
         """Compute hybrid score combining KL divergence and coverage.
@@ -83,23 +88,30 @@ class HybridUniformEvaluator(ColvarEvaluator):
                 colvar_values[:, 0],
                 colvar_values[:, 1],
                 bins=self.bin_edges,
-                density=True
+                density=False  # Get counts, we'll normalize to probabilities
             )
             hist = hist.flatten()
         else:
             hist, _ = np.histogram(
                 colvar_values,
                 bins=self.bin_edges,
-                density=True
+                density=False  # Get counts, we'll normalize to probabilities
             )
         
+        # Normalize to probabilities (sum = 1)
+        hist_sum = np.sum(hist)
+        if hist_sum == 0:
+            return 1e6
+        hist_prob = hist / hist_sum
+        
         # Validate histogram
-        if np.sum(hist) == 0 or not np.isfinite(np.sum(hist)):
+        if not np.isfinite(np.sum(hist_prob)):
             return 1e6
         
         # 1. KL divergence term (penalizes unevenness)
-        uniform = np.full(self.num_bins, self.uniform_density)
-        kl_divs = kl_div(hist, uniform)
+        # Uniform probability distribution (each bin gets equal probability)
+        uniform_prob = np.full(self.num_bins, 1.0 / self.num_bins)
+        kl_divs = kl_div(hist_prob, uniform_prob)
         kl_divergence = np.sum(np.abs(kl_divs))
         
         if not np.isfinite(kl_divergence):
@@ -107,8 +119,8 @@ class HybridUniformEvaluator(ColvarEvaluator):
         
         # 2. Coverage penalty (penalizes unsampled bins)
         # Count bins with non-negligible sampling
-        threshold = self.uniform_density * 0.01  # 1% of uniform
-        bins_sampled = np.sum(hist > threshold)
+        threshold = (1.0 / self.num_bins) * 0.01  # 1% of uniform probability
+        bins_sampled = np.sum(hist_prob > threshold)
         coverage_fraction = bins_sampled / self.num_bins
         
         # Penalty increases as coverage drops below target
@@ -121,7 +133,6 @@ class HybridUniformEvaluator(ColvarEvaluator):
         # Normalized entropy: H(P) / H(uniform)
         # Higher entropy = more spread out = better
         epsilon = 1e-10
-        hist_prob = hist / (np.sum(hist) + epsilon)
         entropy = -np.sum(hist_prob * np.log(hist_prob + epsilon))
         max_entropy = np.log(self.num_bins)  # Entropy of uniform
         normalized_entropy = entropy / max_entropy if max_entropy > 0 else 0.0

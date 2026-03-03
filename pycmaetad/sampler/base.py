@@ -16,12 +16,13 @@ class Sampler(ABC):
     """
     
     @abstractmethod
-    def run(self, output_path: str, bias: 'Bias') -> None:
+    def run(self, output_path: str, bias: 'Bias', seed: int = None) -> None:
         """Run sampling with the given bias.
         
         Args:
             output_path: Directory to write output files.
             bias: Bias potential to apply during sampling.
+            seed: Optional seed for reproducibility (use varies by sampler).
         """
         pass
     
@@ -38,7 +39,7 @@ class Sampler(ABC):
         pass
 
 
-class OpenMMSampler(Sampler):
+class OpenMMLangevinSampler(Sampler):
     """Base class for OpenMM-based samplers.
     
     Provides common OpenMM setup and utilities that all OpenMM samplers share.
@@ -129,12 +130,13 @@ class OpenMMSampler(Sampler):
         else:
             return data[:, 1]  # Second column is CV value
         
-    def run(self, output_path: str, bias: 'Bias') -> None:
+    def run(self, output_path: str, bias: 'Bias', seed: int = None) -> None:
         """Run OpenMM simulation with given bias.
         
         Args:
             output_path: Directory to write output files.
             bias: Bias potential to apply during sampling.
+            seed: Optional seed for reproducibility (use varies by sampler).
         """
         raise NotImplementedError(
             "Subclasses must implement the run method."

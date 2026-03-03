@@ -1,3 +1,23 @@
+"""KL-divergence-based evaluators for collective variable distributions.
+
+All evaluators here compare a sampled CV histogram against a target
+distribution using KL divergence and return a scalar score (lower = better)
+for minimisation by CMA-ES.
+
+Classes
+-------
+KLDivEvaluator
+    General-purpose KL divergence against an arbitrary target distribution.
+UniformKLEvaluator1D
+    Specialisation for 1D CVs targeting a uniform distribution.
+UniformKLEvaluator2D
+    Specialisation for 2D CV spaces (e.g., Muller-Brown x/y coordinates).
+UniformKLEvaluator
+    Alias kept for backward compatibility.
+FESMatchingEvaluator
+    Scores how well the bias matches a reference free energy surface.
+"""
+
 from .base import ColvarEvaluator
 import numpy as np
 from scipy.stats import entropy
@@ -30,7 +50,7 @@ class KLDivEvaluator(ColvarEvaluator):
         sampled_distribution = sampled_hist / np.sum(sampled_hist)
         
         # Add a small constant to avoid log(0)
-        epsilon = 1e-10
+        epsilon = np.finfo(float).tiny
         sampled_distribution += epsilon
         target_distribution = self.target_distribution + epsilon
         
@@ -213,7 +233,7 @@ class UniformKLEvaluator2D(KLDivEvaluator):
         if colvar_values.ndim != 2 or colvar_values.shape[1] < 2:
             raise ValueError(f"Expected Nx2 array for 2D evaluation, got shape {colvar_values.shape}")
         
-        # 2D histogram - use density=False and normalize manually
+        # 2D histogram
         sampled_hist, _, _ = np.histogram2d(
             colvar_values[:, 0], 
             colvar_values[:, 1],
@@ -228,15 +248,15 @@ class UniformKLEvaluator2D(KLDivEvaluator):
         if total_counts == 0 or not np.isfinite(total_counts):
             return 1e6
         
-        sampled_prob = sampled_flat / total_counts
+        # Add epsilon to zero bins to avoid log(0)
+        # This approach (epsilon before normalization) is mathematically sound
+        # and numerically equivalent to scipy's handling of zeros
+        epsilon = np.finfo(float).tiny
+        sampled_flat_safe = np.where(sampled_flat == 0, epsilon, sampled_flat)
+        sampled_prob = sampled_flat_safe / np.sum(sampled_flat_safe)
         
-        # Add small epsilon to avoid log(0)
-        epsilon = 1e-10
-        sampled_prob = np.clip(sampled_prob, epsilon, 1.0)
-        target_prob = np.clip(self.target_distribution, epsilon, 1.0)
-        
-        # Compute KL divergence: sum(p * log(p/q))
-        kl_divergence = np.sum(sampled_prob * np.log(sampled_prob / target_prob))
+        # Use scipy for robust KL divergence calculation
+        kl_divergence = entropy(sampled_prob, self.target_distribution)
         
         if not np.isfinite(kl_divergence):
             return 1e6
@@ -337,3 +357,141 @@ class UniformKLEvaluator(KLDivEvaluator):
             # 1D
             bin_edges = np.linspace(ranges[0], ranges[1], n_bins + 1)
             return cls(bin_edges, is_2d=False)
+
+
+class FESMatchingEvaluator(ColvarEvaluator):
+    """Evaluator that matches a bias potential to a target FES.
+    
+    The goal is to find a bias V(x) such that FES(x) + V(x) ≈ constant,
+    which makes the biased sampling uniform. This is equivalent to V(x) ≈ -FES(x).
+    
+    This evaluator does NOT run simulations - it directly compares the bias landscape
+    to the target FES on a grid.
+    """
+    
+    @property
+    def requires_simulation(self) -> bool:
+        """This evaluator does not require MD simulation."""
+        return False
+    
+    def __init__(self, fes_file: str, bias, temperature: float = 300.0):
+        """
+        Args:
+            fes_file: Path to FES file (PLUMED format: phi psi FES ...)
+            bias: Bias object to evaluate (will be modified with different params)
+            temperature: Temperature in Kelvin (for kT units)
+        """
+        self.temperature = temperature
+        self.kT = 8.314462e-3 * temperature  # kJ/mol (gas constant × T)
+        self.bias = bias
+        
+        # Load FES data
+        self.phi_grid, self.psi_grid, self.fes_grid = self._load_fes(fes_file)
+        
+        # Shift FES so minimum is 0 (for numerical stability)
+        self.fes_min = np.min(self.fes_grid)
+        self.fes_grid_shifted = self.fes_grid - self.fes_min
+        
+        # Compute target bias: V_target = -FES (shifted)
+        self.target_bias = -self.fes_grid_shifted
+        
+    def _load_fes(self, fes_file: str) -> tuple:
+        """Load FES from PLUMED-style free energy file.
+        
+        Expected format: phi psi FES [derivatives...]
+        
+        Returns:
+            (phi_grid, psi_grid, fes_grid) as 2D arrays
+        """
+        # Load data (skip comment lines)
+        data = np.loadtxt(fes_file, comments='#')
+        
+        # Columns: phi, psi, FES, dF/dphi, dF/dpsi
+        phi = data[:, 0]
+        psi = data[:, 1]
+        fes = data[:, 2]
+        
+        # Determine grid shape (assuming regular grid)
+        # Count unique values
+        unique_phi = np.unique(phi)
+        unique_psi = np.unique(psi)
+        
+        n_phi = len(unique_phi)
+        n_psi = len(unique_psi)
+        
+        # Reshape to 2D grid
+        phi_grid = phi.reshape((n_phi, n_psi))
+        psi_grid = psi.reshape((n_phi, n_psi))
+        fes_grid = fes.reshape((n_phi, n_psi))
+        
+        return phi_grid, psi_grid, fes_grid
+    
+    def evaluate(self, params: np.ndarray) -> float:
+        """Evaluate how well the bias matches the target FES.
+        
+        This method is called by the analytical worker with denormalized parameters.
+        
+        Args:
+            params: Denormalized bias parameters to evaluate
+            
+        Returns:
+            KL divergence between (FES + bias) distribution and uniform
+        """
+        # Set parameters on bias object
+        self.bias.set_parameters(params)
+        
+        # Compute bias directly on FES grid points using periodic replication
+        V_bias = np.zeros_like(self.fes_grid_shifted)
+        period = 2 * np.pi
+        
+        for cx, cy, h, wx, wy, corr in zip(
+            self.bias._centers_x, self.bias._centers_y, self.bias._heights,
+            self.bias._widths_x, self.bias._widths_y, self.bias._correlations
+        ):
+            # Add periodic images: original + 8 neighbors (3x3 grid)
+            for shift_x in [-period, 0, period]:
+                for shift_y in [-period, 0, period]:
+                    # Shifted hill center
+                    cx_shifted = cx + shift_x
+                    cy_shifted = cy + shift_y
+                    
+                    # Distance (no wrapping!)
+                    dx = self.phi_grid - cx_shifted
+                    dy = self.psi_grid - cy_shifted
+                    
+                    # Compute 2D Gaussian with correlation
+                    var_x = wx * wx
+                    var_y = wy * wy
+                    cov_xy = corr * wx * wy
+                    
+                    det = var_x * var_y - cov_xy * cov_xy
+                    if det > 1e-10:
+                        inv_xx = var_y / det
+                        inv_xy = -cov_xy / det
+                        inv_yy = var_x / det
+                        
+                        mahalanobis = inv_xx * dx * dx + 2 * inv_xy * dx * dy + inv_yy * dy * dy
+                        V_bias += h * np.exp(-0.5 * mahalanobis)
+                    else:
+                        # Fallback to diagonal
+                        V_bias += h * np.exp(-0.5 * ((dx/wx)**2 + (dy/wy)**2))
+        
+        # Combined landscape: FES + bias (should be flat)
+        combined = self.fes_grid_shifted + V_bias
+        
+        # Convert to probability distributions
+        # P(x) ∝ exp(-F(x)/kT)
+        # For uniform sampling: exp(-(FES + V)/kT) should be constant
+        
+        # Compute Boltzmann weights
+        combined_prob = np.exp(-combined / self.kT)
+        combined_prob = combined_prob / np.sum(combined_prob)
+        
+        # Target: uniform distribution
+        n_bins = combined_prob.size
+        uniform_prob = np.ones(n_bins) / n_bins
+        
+        # KL divergence
+        kl_div = entropy(combined_prob.flatten(), uniform_prob)
+        
+        return kl_div

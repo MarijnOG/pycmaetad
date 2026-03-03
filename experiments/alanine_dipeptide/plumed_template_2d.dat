@@ -1,0 +1,12 @@
+RESTART
+
+# Define the two backbone torsion angles (Ramachandran angles)
+# Phi: C(-1) - N - CA - C
+# Psi: N - CA - C - N(+1)
+# For alanine dipeptide: ACE-ALA-NME
+phi: TORSION ATOMS=5,7,9,15
+psi: TORSION ATOMS=7,9,15,17
+
+metad: METAD ARG=phi,psi SIGMA=0.0,0.0 HEIGHT=0.0 PACE=999999999 FILE=${HILLS_FILE}
+
+PRINT ARG=* FILE=${COLVAR_FILE} STRIDE=${STRIDE}

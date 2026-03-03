@@ -64,7 +64,7 @@ pip install -e .
 python test_file_generation.py
 
 # Run minimal optimization (2 generations)
-cd examples/dipeptide
+cd experiments/dipeptide
 python alanine_dipeptide_example.py run --generations 2
 ```
 
@@ -116,11 +116,11 @@ optimizer = CMAESOptimizer(
 result = optimizer.optimize(output_dir="output")
 ```
 
-## Examples
+## Experiments
 
 ### Alanine Dipeptide
 
-See [`examples/dipeptide/alanine_dipeptide_example.py`](examples/dipeptide/alanine_dipeptide_example.py):
+See [`experiments/dipeptide/alanine_dipeptide_example.py`](experiments/dipeptide/alanine_dipeptide_example.py):
 
 ```bash
 # Run full optimization

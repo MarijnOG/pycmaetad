@@ -1,12 +1,74 @@
 """OpenMM samplers with bias integration."""
 
-from .base import OpenMMSampler
+from .base import OpenMMLangevinSampler
 from ..bias.base import Bias
 from pathlib import Path
 import numpy as np
 
 
-class OpenMMPlumedSampler(OpenMMSampler):
+class ColvarReporter:
+    """Custom OpenMM reporter for writing CV values in PLUMED COLVAR format.
+    
+    Writes collective variable (CV) values to a file compatible with PLUMED's
+    COLVAR format, enabling analysis with PLUMED tools.
+    """
+    
+    def __init__(self, file, reportInterval, cv_names=None, cv_ranges=None):
+        """Initialize COLVAR reporter.
+        
+        Args:
+            file: File path or file object to write to
+            reportInterval: Frequency (in steps) for writing output
+            cv_names: List of CV names (default: ['x', 'y', 'z'])
+            cv_ranges: Dict with CV ranges, e.g. {'x': (-1.5, 1.5), 'y': (-0.5, 2.5)}
+        """
+        self._reportInterval = reportInterval
+        self._cv_names = cv_names or ['x', 'y', 'z']
+        self._cv_ranges = cv_ranges or {}
+        self._out = open(file, 'w') if isinstance(file, str) else file
+        self._hasInitialized = False
+    
+    def describeNextReport(self, simulation):
+        """Get information about the next report."""
+        steps = self._reportInterval - simulation.currentStep % self._reportInterval
+        return (steps, True, False, False, False, None)
+    
+    def report(self, simulation, state):
+        """Generate a report at the current simulation step."""
+        if not self._hasInitialized:
+            # Write header in PLUMED format
+            self._out.write(f"#! FIELDS time {' '.join(self._cv_names)}\n")
+            
+            # Write SET directives for CV ranges (useful for analysis)
+            for cv_name in self._cv_names:
+                if cv_name in self._cv_ranges:
+                    min_val, max_val = self._cv_ranges[cv_name]
+                    self._out.write(f"#! SET min_{cv_name} {min_val}\n")
+                    self._out.write(f"#! SET max_{cv_name} {max_val}\n")
+            
+            self._hasInitialized = True
+        
+        # Get positions and time from state
+        from openmm import unit
+        positions = state.getPositions(asNumpy=True).value_in_unit(unit.nanometer)
+        time_ps = state.getTime().value_in_unit(unit.picosecond)
+        
+        # Write CV values (for MullerBrown: x, y coordinates of single particle)
+        values = [positions[0][i] for i in range(min(len(self._cv_names), positions.shape[1]))]
+        
+        self._out.write(f"{time_ps:12.6f}")
+        for val in values:
+            self._out.write(f" {val:12.6f}")
+        self._out.write("\n")
+        self._out.flush()  # Ensure data is written immediately
+    
+    def __del__(self):
+        """Close file on deletion."""
+        if hasattr(self, '_out'):
+            self._out.close()
+
+
+class OpenMMPlumedSampler(OpenMMLangevinSampler):
     """OpenMM sampler for molecular systems with any bias type.
     
     Works with both PlumedBias and CustomForceBias.
@@ -131,8 +193,8 @@ class OpenMMPlumedSampler(OpenMMSampler):
         return simulation
 
 
-class MullerBrownSampler(OpenMMSampler):
-    """OpenMM sampler for Muller-Brown 2D potential."""
+class MullerBrownSampler(OpenMMLangevinSampler):
+    """OpenMM sampler for analytical Muller-Brown 2D potential."""
     
     def __init__(
         self,
@@ -141,10 +203,23 @@ class MullerBrownSampler(OpenMMSampler):
         friction: float,
         simulation_steps: int,
         report_interval: int = 1000,
-        initial_position: tuple[float, float] = (-0.5, 1.5)
+        initial_position: tuple[float, float] | None = None,
+        cv_range: tuple[tuple[float, float], tuple[float, float]] = ((-1.5, 1.5), (-0.5, 2.5))
     ):
+        """Initialize Muller-Brown sampler.
+        
+        Args:
+            temperature: Temperature in Kelvin
+            time_step: Integration timestep in ps
+            friction: Friction coefficient in 1/ps
+            simulation_steps: Number of MD steps per simulation
+            report_interval: Frequency for data collection
+            initial_position: Starting (x, y) position. If None, randomized per evaluation using seed.
+            cv_range: CV bounds ((x_min, x_max), (y_min, y_max)) for randomized starting positions
+        """
         super().__init__(temperature, time_step, friction, simulation_steps, report_interval)
         self.initial_position = initial_position
+        self.cv_range = cv_range
     
     def _create_muller_brown_force(self):
         """Create Muller-Brown potential as CustomExternalForce."""
@@ -168,8 +243,12 @@ class MullerBrownSampler(OpenMMSampler):
         
         return force
     
-    def _load_system(self):
-        """Create 1-particle system with Muller-Brown potential."""
+    def _load_system(self, initial_pos):
+        """Create 1-particle system with Muller-Brown potential.
+        
+        Args:
+            initial_pos: (x, y) starting position for this simulation
+        """
         from openmm import System
         
         system = System()
@@ -187,18 +266,39 @@ class MullerBrownSampler(OpenMMSampler):
         
         # Initial positions
         positions = self.unit.Quantity(
-            np.array([[self.initial_position[0], self.initial_position[1], 0.0]]),
+            np.array([[initial_pos[0], initial_pos[1], 0.0]]),
             self.unit.nanometers
         )
         
         return topology, system, positions
     
-    def run(self, output_path: str, bias: Bias = None):
-        """Run Muller-Brown simulation with optional bias."""
+    def run(self, output_path: str, bias: Bias = None, seed: int = None):
+        """Run Muller-Brown simulation with optional bias.
+        
+        Args:
+            output_path: Directory for output files.
+            bias: Optional Bias object.
+            seed: Random seed for generating starting position (used when initial_position=None).
+        """
         Path(output_path).mkdir(parents=True, exist_ok=True)
         
-        # Load system
-        topology, system, positions = self._load_system()
+        # Determine starting position
+        if self.initial_position is None:
+            # Generate random starting position within CV range
+            if seed is not None:
+                rng = np.random.RandomState(seed)
+            else:
+                rng = np.random
+            
+            x = rng.uniform(self.cv_range[0][0], self.cv_range[0][1])
+            y = rng.uniform(self.cv_range[1][0], self.cv_range[1][1])
+            start_pos = (x, y)
+        else:
+            # Use fixed starting position
+            start_pos = self.initial_position
+        
+        # Load system with determined starting position
+        topology, system, positions = self._load_system(start_pos)
         
         # Add bias if provided
         if bias is not None:
@@ -218,6 +318,14 @@ class MullerBrownSampler(OpenMMSampler):
             self.app.PDBReporter(f"{output_path}/output.pdb", self.report_interval)
         )
         simulation.reporters.append(
+            ColvarReporter(
+                f"{output_path}/COLVAR",
+                self.report_interval,
+                cv_names=['x', 'y'],
+                cv_ranges={'x': (-1.5, 1.5), 'y': (-0.5, 2.5)}
+            )
+        )
+        simulation.reporters.append(
             self.app.StateDataReporter(
                 f"{output_path}/state.log",
                 self.report_interval,
@@ -232,3 +340,29 @@ class MullerBrownSampler(OpenMMSampler):
         print("Simulation complete.")
         
         return simulation
+    
+    def get_colvar_values(self, output_path: str) -> np.ndarray:
+        """Extract CV values from COLVAR file.
+        
+        Args:
+            output_path: Directory containing COLVAR file.
+            
+        Returns:
+            Nx2 array of (x, y) positions from the trajectory.
+        """
+        colvar_file = Path(output_path) / "COLVAR"
+        
+        if not colvar_file.exists():
+            raise FileNotFoundError(f"COLVAR file not found: {colvar_file}")
+        
+        # Parse COLVAR file (skip comment lines starting with #)
+        data = []
+        with open(colvar_file, 'r') as f:
+            for line in f:
+                if line.startswith('#'):
+                    continue
+                parts = line.split()
+                if len(parts) >= 3:  # time, x, y
+                    data.append([float(parts[1]), float(parts[2])])
+        
+        return np.array(data)
