@@ -1,135 +1,140 @@
-# PyCMAETAD - CMA-ES Optimized Metadynamics for Enhanced Sampling
+# PyCMAETAD — CMA-ES Optimised Metadynamics
 
 ## Overview
 
-**PyCMAETAD** implements a novel approach to enhanced sampling in molecular dynamics simulations by optimizing static metadynamics bias potentials using the CMA-ES (Covariance Matrix Adaptation Evolution Strategy) algorithm.
+**PyCMAETAD** optimises static metadynamics bias potentials for molecular dynamics
+simulations using the CMA-ES (Covariance Matrix Adaptation Evolution Strategy) algorithm.
 
-Instead of traditional metadynamics that gradually deposits Gaussian hills during simulation, we treat the bias potential as a **static, optimizable object**. The CMA-ES algorithm searches for hill parameters (centers, widths, heights) that produce the most uniform sampling of the collective variable (CV) space.
+Rather than depositing Gaussian hills adaptively during a simulation, the bias is treated
+as a **static, parameterised object** whose hill positions, heights, and widths are
+optimised by CMA-ES.  Each generation of candidates is evaluated in parallel; the score
+for each candidate measures how uniformly the biased simulation samples collective
+variable (CV) space (e.g. KL divergence from a uniform distribution).
 
-### Key Concept: Pseudo-Metadynamics
+### Optimisation loop
 
-Traditional metadynamics:
-- Hills deposited online during simulation
-- Adaptive but can overflood or leave gaps
-- Limited control over final bias shape
+1. **Propose** — CMA-ES samples a population of bias parameter vectors
+2. **Simulate** — each candidate runs an MD simulation (OpenMM) with that bias applied
+3. **Evaluate** — a scoring function measures sampling quality (lower = better)
+4. **Update** — scores are fed back to CMA-ES to guide the next generation
+5. **Repeat** until convergence or a generation budget is exhausted
 
-Our approach:
-1. **Define**: A parameterized set of Gaussian hills
-2. **Simulate**: Run MD with static bias potential
-3. **Evaluate**: Measure sampling uniformity (e.g., KL divergence from uniform distribution)
-4. **Optimize**: Use CMA-ES to adjust hill parameters
-5. **Iterate**: Repeat until optimal uniform sampling achieved
 
-## Features
+## Repository layout
 
-- 🎯 **CMA-ES Optimization**: Adaptive parameter search for bias potentials
-- 🔬 **OpenMM Integration**: Fast MD simulations with PLUMED bias support
-- 📊 **Multiple Evaluators**:
-  - KL divergence (uniform sampling)
-  - Potential variance (landscape flattening)
-  - Trajectory-based metrics
-- 🔄 **Parallel Execution**: Multi-worker support for population-based optimization
-- 💾 **Checkpoint/Resume**: Save progress and resume interrupted runs
-- 📈 **Visualization Tools**: Bias landscapes, convergence plots, CV distributions
-- 🧪 **Analytical Potentials**: Test on Muller-Brown, double-well, custom 2D surfaces
+```
+pycmaetad/          Core library
+  bias/             Bias potential classes (PlumedHillBias, MultiGaussian2DForceBias, …)
+  evaluator/        Scoring functions (KL divergence, trajectory length, …)
+  optimizer/        CMAESWorkflow — the main optimisation driver
+  sampler/          MD wrappers (OpenMMPlumedSampler, MullerBrownSampler)
+  potentials.py     Analytical 2D potentials (Muller-Brown, double-well, …)
+  visualization/    Convergence and bias-landscape plots
+
+experiments/
+  minimal_example/  Quick end-to-end smoke test (start here)
+  muller_brown/     2D Muller-Brown analytical potential
+  alanine_dipeptide/  1D backbone dihedral of alanine dipeptide
+  polyproline/      Polyproline II helix backbone CVs
+  sampling_convergence/  Convergence diagnostics
+  evaluator_comparison/  Evaluator benchmarks
+```
+
 
 ## Installation
 
-### Prerequisites
-
-- Python 3.8+
-- OpenMM 8.0+
-- PLUMED 2.8+ (for MD bias integration)
-- OpenMM-PLUMED plugin
-
-### Setup
-
 ```bash
-# Clone repository
+# Clone the repository
 git clone <repository-url>
 cd python_cma_metadynamics
 
-# Create conda environment
-conda env create -f environment.yaml
+# Create and activate the conda environment
+conda env create -f environment.yml
 conda activate pycmaetad
-
-# Install package
-pip install -e .
 ```
 
-### Verify Installation
+The environment installs OpenMM, the OpenMM-PLUMED plugin, PLUMED, NumPy, SciPy,
+Matplotlib, and the `cma` Python package, then installs `pycmaetad` itself in
+editable mode (`pip install -e .`).
+
+
+## Verifying the installation
+
+Run the minimal end-to-end test, which optimises a 2-Gaussian bias on the 2D
+Muller-Brown potential for 10 generations (takes roughly 1–2 minutes):
 
 ```bash
-# Run a quick test
-python test_file_generation.py
-
-# Run minimal optimization (2 generations)
-cd experiments/dipeptide
-python alanine_dipeptide_example.py run --generations 2
+cd experiments/minimal_example
+python mb_test.py
 ```
 
-## Quick Start
+A successful run prints a best score and writes a convergence plot to
+`experiments/minimal_example/test_output/convergence.png`.  No PLUMED files or
+external force-field parameters are required.
 
-### Basic Workflow
+
+## Usage example
 
 ```python
-from pycmaetad.bias import PlumedHillBias
-from pycmaetad.sampler import OpenMMPlumedSampler
-from pycmaetad.evaluator import UniformKLEvaluator
-from pycmaetad.optimizer import CMAESOptimizer
+import numpy as np
+from pycmaetad.bias import MultiGaussian2DForceBias
+from pycmaetad.sampler import MullerBrownSampler
+from pycmaetad.evaluator import UniformKLEvaluator2D
+from pycmaetad.optimizer import CMAESWorkflow
 
-# Define bias potential
-bias = PlumedHillBias(
-    plumed_template="plumed_template.dat",
-    hills_per_d=2,
-    hills_space=(-3.14, 3.14),
-    hills_height=70.0,
-    hills_width=1.5
+bias = MultiGaussian2DForceBias(
+    n_gaussians=2,
+    height_range=(0, 1000),
+    center_x_range=(-1.5, 1.5),
+    center_y_range=(-0.5, 2.5),
+    log_variance_x_range=(np.log(0.01**2), np.log(0.5**2)),
+    log_variance_y_range=(np.log(0.01**2), np.log(0.5**2)),
 )
 
-# Configure MD sampler
-sampler = OpenMMPlumedSampler(
-    pdb_file="system.pdb",
-    forcefield_files=["amber14-all.xml"],
+sampler = MullerBrownSampler(
     temperature=300.0,
-    time_step=0.004,
+    time_step=0.001,
     friction=1.0,
-    simulation_steps=25000
+    simulation_steps=10000,
+    report_interval=10,
 )
 
-# Set up evaluator
-evaluator = UniformKLEvaluator(
-    bin_edges=np.linspace(-np.pi, np.pi, 31),
-    is_2d=False
+evaluator = UniformKLEvaluator2D.from_ranges(
+    ranges=((-1.5, 1.5), (-0.5, 2.5)),
+    n_bins=25,
 )
 
-# Run optimization
-optimizer = CMAESOptimizer(
+workflow = CMAESWorkflow(
     bias=bias,
     sampler=sampler,
     evaluator=evaluator,
-    population_size=10,
+    initial_mean=np.ones(12) * 0.5,
+    sigma=0.3,
+    population_size=8,
     max_generations=50,
-    n_workers=4
+    n_workers=4,
 )
 
-result = optimizer.optimize(output_dir="output")
+result = workflow.optimize("output/")
 ```
+
+For PLUMED-based systems (e.g. alanine dipeptide) replace `MultiGaussian2DForceBias`
+with `PlumedHillBias` / `PlumedHillBias2D` and `MullerBrownSampler` with
+`OpenMMPlumedSampler`.  Refer to the experiment scripts for complete working examples.
+
 
 ## Experiments
 
-### Alanine Dipeptide
+| Folder | System | Bias type |
+|--------|--------|-----------|
+| `minimal_example/` | Muller-Brown (2D) | `MultiGaussian2DForceBias` |
+| `muller_brown/` | Muller-Brown (2D) | `MultiGaussian2DForceBias` |
+| `alanine_dipeptide/` | Alanine dipeptide φ/ψ | `PlumedHillBias2D` |
+| `polyproline/` | Polyproline backbone CVs | `PlumedHillBias` / `PlumedHillBias2D` |
+| `sampling_convergence/` | Convergence diagnostics | — |
+| `evaluator_comparison/` | Evaluator benchmarks | — |
 
-See [`experiments/dipeptide/alanine_dipeptide_example.py`](experiments/dipeptide/alanine_dipeptide_example.py):
+Each experiment folder contains its own `README.md` and `configs/` directory with
+ready-to-use configuration files.
 
-```bash
-# Run full optimization
-python alanine_dipeptide_example.py run
-
-# Generate plots from results
-python alanine_dipeptide_example.py plot
-
-# Resume from checkpoint
-python alanine_dipeptide_example.py resume
-```
 

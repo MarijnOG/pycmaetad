@@ -15,5 +15,5 @@ dependencies:
   - joblib
   - pip
   - pip:
-    - cma
+    - cmaes
     - -e .

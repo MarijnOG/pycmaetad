@@ -1,4 +1,5 @@
 matplotlib==3.10.8
 numpy==2.4.2
-scipy==1.17.0
+openmm==8.4.0.post2
+scipy==1.17.1
 setuptools==78.1.1
